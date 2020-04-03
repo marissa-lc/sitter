@@ -26,6 +26,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
+  // this could be the react app home page
 
   // this could be the react app home page
 
