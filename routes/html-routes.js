@@ -26,6 +26,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
+<<<<<<< HEAD
+=======
+  // this could be the react app home page
+>>>>>>> 02bcd5e2ade74ea27bf15168505132138520f108
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
