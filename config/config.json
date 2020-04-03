@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "KGBrani143$$",
-=======
-    "password": "Wordup8.",
->>>>>>> 02bcd5e2ade74ea27bf15168505132138520f108
     "database": "passport_demo",
     "host": "127.0.0.1",
     "dialect": "mysql"
