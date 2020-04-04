@@ -32,8 +32,8 @@ let mongoDb = mongoose.connection;
 mongoDb.on("error", console.error.bind(console, "connection error:"));
 
 // Syncing our database and logging a message to the user upon success
-// db.sequelize.sync().then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
   });
-// });
+});

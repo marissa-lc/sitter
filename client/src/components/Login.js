@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 // import Footer from "../components/Footer";
 // import ProjectList from "../components/ProjectList";
 
 function Login() {
-  // const [formObject, setFormObject] = useState({
-  //   fullName: "",
-  //   email: "",
-  //   message: ""
-  // })
+  const [formObject, setFormObject] = useState({
+    userEmail: "",
+    userPassword: ""
+ })
+
+ function saveInputs(event) {
+   const keyName = event.target.name;
+   const keyValue = event.target.value;
+   setFormObject({ ...formObject, [keyName] : keyValue});
+ }
+
+function loginForm (event) {    
+   event.preventDefault();
+   if (!formObject.userEmail || !formObject.userPassword) {
+      return;
+   }
+   // If we have an email and password we run the loginUser function and clear the form
+   loginUser(formObject.userEmail, formObject.userPassword);
+   setFormObject({ ...formObject, userEmail: "", userPassword: ""});
+ }
+
+ function loginUser(email, password) {
+   axios
+     .post("/api/login", {
+     email: email,
+     password: password
+   })
+     .then(res => {
+       console.log('success');
+       console.log(res);
+     })
+     .catch(err => {
+       console.log('error');
+       console.log(err);
+     })
+ }
 
 return (
   <div className="bg-light">
