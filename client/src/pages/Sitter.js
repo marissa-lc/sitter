@@ -1,7 +1,6 @@
 import React from "react";
-import AuthNavbar from "../components/AuthNavbar";
-// import Footer from "../components/Footer";
-// import ProjectList from "../components/ProjectList";
+import Event from "../components/Event";
+import Notes from "../components/Notes";
 
 function Sitter() {
   // const [formObject, setFormObject] = useState({
@@ -13,11 +12,14 @@ function Sitter() {
 return (
   // This is what we show when the user is not authenticated
   <div>
-    <AuthNavbar></AuthNavbar>
     <div className="container">
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
           <h2>SITTER PAGE<span className="member-name" /></h2>
+          <div>THIS IS WHERE THE PROFILE WILL GO</div>
+          <Event>EVENTS</Event>
+          <Notes>NOTES</Notes>
+          <div>THIS IS WHERE THE EMERGENCY INFORMATION WILL GO</div>
         </div>
       </div>
     </div>

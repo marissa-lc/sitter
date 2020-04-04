@@ -1,10 +1,26 @@
 import React from "react";
-import { Button, TextField } from '@material-ui/core';
+import Event from "./Event";
+import Notes from "./Notes";
 
-export function Schedule(props) {
-  console.log("formbtn props", props);
+function Schedule(props) {
+  const [eventList, updateEventList] = useState([]);
+  const [notes, updateNotes] = useState([]);
+
+  // do functions for editing the events go here?
+
+  console.log("schedule props", props);
   return (
-    <Button type="submit" variant="contained" color="primary" {...props}>
-    </Button>
+    <div>
+      {eventList.items.map((event, index) => (
+        <div key={index}>
+          <Event
+            time={event.time}
+            activity={event.activity}
+          ></Event>
+        </div>
+      ))}
+    </div>
   );
 }
+
+export default Schedule;
