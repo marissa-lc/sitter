@@ -1,3 +1,14 @@
+
+/* SIGN IN AND LOG IN FORM */
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+
+/* EMERGENCY CONTACT PAGE */
+
 body {
   margin: 0;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
