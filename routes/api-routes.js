@@ -1,16 +1,53 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-
+var jwt = require("jsonwebtoken");
+const secret = "mysecretsshhh";
+​
 module.exports = function(app) {
+  const withAuth = function(req, res, next) {
+​
+  const token = 
+      req.body.token ||
+      req.query.token ||
+      req.headers['x-access-token'] ||
+      req.cookies.token;
+    console.log(token);
+​
+    if (!token) {
+      res.status(401).send('Unauthorized: No token provided');
+    } else {
+      jwt.verify(token, secret, function(err, decoded) {
+        if (err) {
+          res.status(401).send('Unauthorized: Invalid token');
+        } else {
+          req.email = decoded.email;
+          next();
+        }
+      });
+    }
+  }
+​
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-  // app.post("/api/login", function(req, res) {
-    res.json(req.user);
+    const email = req.user;
+    // Issue token
+    const payload = { email };
+    const token = jwt.sign(payload, secret, {
+      expiresIn: '1h'
+    });
+    console.log(token);
+    res.cookie('token', token, { httpOnly: true })
+      .sendStatus(200);
+​
   });
-
+​
+  app.get("/api/checkToken", withAuth, function(req, res) {
+    res.sendStatus(200);
+  });
+​
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -27,13 +64,12 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
-
+​
   // Route for logging user out
-  app.get("/logout", function(req, res) {
-    req.logout();
-    res.redirect("/");
+  app.get("/api/logout", function(req, res) {
+     res.clearCookie('token').send('cookie has been deleted');
   });
-
+​
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
     if (!req.user) {
