@@ -2,7 +2,7 @@
 var express = require("express");
 var session = require("express-session");
 const mongoose = require("mongoose");
-const Schedule = require("./mongooseModels/schedule");
+// const Schedule = require("./mongooseModels/schedule");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 const bodyParser = require('body-parser');
@@ -34,9 +34,12 @@ require("./routes/api-routes.js")(app);
 
 // Connect to the Mongo DB
 console.log("MAKING MONGO CONNECTION");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/sitterData");
-let mongoDb = mongoose.connection;
-mongoDb.on("error", console.error.bind(console, "connection error:"));
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sitterData", {
+  useCreateIndex: true,
+  useNewUrlParser: true
+  });
+// let mongoDb = mongoose.connection;
+// mongoDb.on("error", console.error.bind(console, "connection error:"));
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {

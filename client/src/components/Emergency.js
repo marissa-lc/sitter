@@ -16,7 +16,7 @@ function Emergency(props) {
       email address<br/>
       Allergies and conditions:<br/>
       blablabla
-
+    <br/>
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Edit Emergency Contact
       </Button>

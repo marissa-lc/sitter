@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const scheduleSchema = new Schema({
   day: { type: String, required: true },
-  schedule: [{ 
+  events: [{ 
     time: { type: String, required: true},
     activity: { type: String, required: true}
   }],

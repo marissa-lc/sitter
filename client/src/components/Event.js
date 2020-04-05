@@ -10,9 +10,9 @@ function Event(props) {
   return (
     <div>
       <li>{props.time}: {props.activity}
-        <Button variant="primary" onClick={() => setModalShow(true)}>
+        {/* <Button variant="primary" onClick={() => setModalShow(true)}>
           Edit
-        </Button>
+        </Button> */}
         <EditEvent
           show={modalShow}
           onHide={() => setModalShow(false)}

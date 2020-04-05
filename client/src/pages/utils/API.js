@@ -32,8 +32,11 @@ export default {
     // console.log("scheduleData in API", schdeuldData)
     return axios.post("/api/schedule", scheduleData);
   },
+  getSchedule: function(day) {
+    return axios.get("/api/schedule/" + day);
+  }
 
-  // put call - 
+  // put call - (replace)
   // updateSchedule: function(scheduleData) {
   //   return axios.put("/api/schedule", scheduleData);
   // }

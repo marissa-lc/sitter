@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Accordion, Card } from 'react-bootstrap';
 import Schedule from "../components/Schedule";
 // import Notes from "../components/Notes";
 import Emergency from "../components/Emergency";
@@ -36,18 +37,43 @@ function Sitter() {
 
 return (
   // This is what we show when the user is not authenticated
-  <div style={{display: loading ? 'block' : 'none'}}>
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6 col-md-offset-3">
-          <h2>SITTER PAGE<span className="member-name" /></h2>
-          <div>THIS IS WHERE THE PROFILE WILL GO</div>
-          <button onClick={logout}>Logout</button>
-          <Schedule></Schedule>
-          <Emergency></Emergency>
-        </div>
-      </div>
+  <div>
+    <div>
+      <img src="
+      /images/group-diverse-kids53876-27354/jpg" alt="kids"></img>
     </div>
+  <Accordion defaultActiveKey="0">
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey="0">
+        <h4>Schedule</h4>
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey="0">
+        <Card.Body>THIS IS WHERE THE PROFILE WILL GO <br/>
+          <button onClick={logout}>Logout</button>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey="1">
+        <h4>Schedule</h4>
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey="1">
+        <Card.Body>
+          <Schedule></Schedule>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey="2">
+        <h4>Emergency Contact Information</h4>
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey="2">
+        <Card.Body>
+          <Emergency></Emergency>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
+  </Accordion>
   </div>
   // We need to show something else if the user is authenticated
 )}

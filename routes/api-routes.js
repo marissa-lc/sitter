@@ -3,6 +3,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 var jwt = require('jsonwebtoken');
 var secret = 'appname-secret';
+const mongoosedb = require("../mongooseModels");
 
 module.exports = function(app) {
   const withAuth = function(req, res, next) {
@@ -81,4 +82,13 @@ module.exports = function(app) {
       });
     }
   });
+
+// mongo
+app.get("/api/schedule/:day", function(req, res) {
+  console.log(req.params);
+  mongoosedb.Schedule.find({day: req.params.day});
+  }).then(schedule => {
+    res.json(schedule);
+  }).catch(err => console.log(err));
+
 };
