@@ -5,7 +5,7 @@ import Emergency from "../components/Emergency";
 import axios from "axios";
 
 function Sitter() {
-  const [ loading, setLoading ] = useState(true); //temporarily set to true until login works
+  const [ loading, setLoading ] = useState(false); //temporarily set to true until login works
 
   useEffect(() => {
     axios.get('/api/checkToken')

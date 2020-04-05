@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const Schedule = require("./mongooseModels/schedule");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // Setting up port and requiring models for syncing
 // var PORT = process.env.PORT || 8080;
@@ -13,6 +15,7 @@ var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 var app = express();
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -20,6 +23,10 @@ app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 // Requiring our routes
 require("./routes/html-routes.js")(app);

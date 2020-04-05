@@ -36,12 +36,12 @@ function Schedule() {
         ))}
       </ul>
       {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-        Edit Schedule
-      </Button>
-      <EmerEntry
+        Add an Event
+      </Button> */}
+      {/* <EmerEntry */}
         show={modalShow}
         onHide={() => setModalShow(false)}
-      /> */}
+      />
     </div>
   );
 }
