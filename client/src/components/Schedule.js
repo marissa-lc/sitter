@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Event from "./Event";
 import Notes from "./Notes";
+// import EditEvent from "./EditEvent";
 
 const events=[{
   time: "1:00 pm",
@@ -16,6 +17,7 @@ const events=[{
 }];
 
 function Schedule() {
+  const [modalShow, setModalShow] = useState(false);
   const [eventList, updateEventList] = useState(events);
   const [notes, updateNotes] = useState([]);
 
@@ -33,6 +35,13 @@ function Schedule() {
           </div>
         ))}
       </ul>
+      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
+        Edit Schedule
+      </Button>
+      <EmerEntry
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      /> */}
     </div>
   );
 }

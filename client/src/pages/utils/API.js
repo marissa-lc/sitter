@@ -27,14 +27,14 @@ export default {
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    // console.log("bookdata in API", bookData)
-    return axios.post("/api/books", bookData);
+  // Saves the schedule to the database
+  saveSchedule: function(scheduleData) {
+    // console.log("scheduleData in API", schdeuldData)
+    return axios.post("/api/schedule", scheduleData);
   },
 
   // put call - 
-  // updateBook: function(bookData) {
-  //   return axios.put("/api/books", bookData);
+  // updateSchedule: function(scheduleData) {
+  //   return axios.put("/api/schedule", scheduleData);
   // }
 };

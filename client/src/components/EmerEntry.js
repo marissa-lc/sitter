@@ -111,6 +111,7 @@ function EmerEntry(props) {
     </div>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
+        {/* needs to also have SUBMIT handler on close */}
       </Modal.Footer>
     </Modal>
   );
