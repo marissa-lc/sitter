@@ -6,6 +6,7 @@ import Signup from "../components/Signup";
 function Welcome() {
   const [isMember, getMemberStatus] = useState(true);
   const [isAuthenticated, getAuthStatus] = useState();
+  // const [userState, getUserState] = useState();
   // const [formObject, setFormObject] = useState({
   //   fullName: "",
   //   email: "",

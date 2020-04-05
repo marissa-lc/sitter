@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../pages/utils/API";
+// import axios from "axios";
 // import Footer from "../components/Footer";
 // import ProjectList from "../components/ProjectList";
 
@@ -26,11 +27,12 @@ function loginForm (event) {
  }
 
  function loginUser(email, password) {
-   axios
-     .post("/api/login", {
-     email: email,
-     password: password
-   })
+  //  axios
+  //    .post("/api/login", {
+  //    email: email,
+  //    password: password
+  //  })
+    API.login(email, password)
      .then(res => {
        console.log('success');
        console.log(res);
@@ -64,7 +66,7 @@ return (
           </form>
           <br />
           {/* <p><a href="/">Home</a></p> */}
-          <p>Not already a member? Sign up <a href="/signup">here</a></p>
+          <p>Not a member yet? Sign up <a href="/signup">here</a></p>
         </div>
       </div>
     </div>
