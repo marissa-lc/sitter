@@ -40,3 +40,4 @@ Once a household has been successfully added the user will be able to access the
 * This creates an easy and accessible way for parents/pet owners to communicate with their child/pets caregivers by having up to date and relevant info vs verbally communicating as you rush or the door or trying to write everything down that you think is important at the time.
 
 * This will also simplify things if you are using multiple caregivers or need care for multiple things.
+
