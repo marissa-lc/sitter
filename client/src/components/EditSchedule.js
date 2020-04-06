@@ -16,7 +16,7 @@ const scheduleTest = {
       time: "4:00 pm",
       activity: "screen time (1 hour)"
     }],
-    Notes: "Please make sure to put rise an hang out the bathing suit in the bathroom when you get home."
+    notes: "Please make sure to put rise an hang out the bathing suit in the bathroom when you get home."
 }
 
 // do we know if the database has something in it?
@@ -36,15 +36,9 @@ function updateSchedule(sched) {
   .catch(err => console.log(err));
 }
 
-function saveSchedule(sched) {
-  //TBD
-}
-
 
 function EditSchedule(props) {
   console.log("EditSchedule props", props);
-  // the props that get passed into this page are:
-  //day and events
 
   return (
 
@@ -62,7 +56,6 @@ function EditSchedule(props) {
       <Modal.Body>
         <Form>
           <Form.Group controlId="day">
-            {/* <Form.Label>Day</Form.Label> */}
             <DropdownButton drop="right" id="dropdown-basic-button" title="Select Day">
               <Dropdown.Item href="#/action-1">Monday</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Tuesday</Dropdown.Item>
@@ -73,14 +66,8 @@ function EditSchedule(props) {
             </DropdownButton>
             <Form.Control placeholder={props.schedule.day} />
             <Form.Text className="text-muted">
-              {/* We'll never share your email with anyone else. */}
             </Form.Text>
           </Form.Group>
-{/* 
-          <Form.Group controlId="events">
-            <Form.Label>{props.events[0].time}</Form.Label>
-            <Form.Control placeholder="TEMPORARY" />
-          </Form.Group> */}
           <ul>
             {props.schedule.events.map((event, index) => (
               <div key={index}>
@@ -92,7 +79,10 @@ function EditSchedule(props) {
               </div>
             ))}
           </ul>
-
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label><h5>Notes</h5></Form.Label>
+            <Form.Control as="textarea" rows="3" />
+          </Form.Group>
           {/* <Button variant="primary" type="submit">
             Submit
           </Button> */}

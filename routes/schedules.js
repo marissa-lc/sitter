@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const booksController = require("../../controllers/schedulesController");
+const schedulesController = require("../../controllers/schedulesController");
 
 // Matches with "/api/schedules"  WHY???
 router.route("/")

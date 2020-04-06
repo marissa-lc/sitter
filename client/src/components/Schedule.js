@@ -21,22 +21,11 @@ const scheduleTest = {
       time: "4:00 pm",
       activity: "screen time (1 hour)"
     }],
-    Notes: "Please make sure to put rise an hang out the bathing suit in the bathroom when you get home."
+    notes: "Please make sure to put rise an hang out the bathing suit in the bathroom when you get home."
 }
 
 // loadSchedule() (API call - handle form submit for the schedule page)
-
-// function updateSchedule(sched) {
-//   console.log("INSIDE UPDATESCHEDULE");
-//   API.getSchedule(sched.day)
-//   .then(result => {
-//     console.log("result", result);
-//     if (!result) {
-//       API.saveSchedule(sched)
-//     }
-//   })
-//   .catch(err => console.log(err));
-// }
+// function getSchedule
 
 function Schedule(props) { // assume props=scheduleTest
   const [modalShow, setModalShow] = useState(false);
@@ -60,10 +49,12 @@ function Schedule(props) { // assume props=scheduleTest
           </div>
         ))}
       </ul>
-      <Form.Group controlId="exampleForm.ControlTextarea1">
+      <h5>Notes</h5>
+      <p>{schedule.notes}</p>
+      {/* <Form.Group controlId="exampleForm.ControlTextarea1">
         <Form.Label><h5>Notes</h5></Form.Label>
         <Form.Control as="textarea" rows="3" />
-      </Form.Group>
+      </Form.Group> */}
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Edit Schedule
       </Button>

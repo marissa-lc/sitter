@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { Accordion, Card, Image, Col, Row, Container } from 'react-bootstrap';
 import Schedule from "../components/Schedule";
-// import Notes from "../components/Notes";
 import Emergency from "../components/Emergency";
 import axios from "axios";
+import API from "./utils/API";
 
 function Sitter() {
   const [ loading, setLoading ] = useState(false);
@@ -25,15 +25,14 @@ function Sitter() {
 
 
   function logout() {
-      axios
-        .get("/api/logout")
-        .then(res => {
-          window.location = '/';
-        })
-        .catch(err => {
-          console.log(err);
-        })
-  }
+    API.logout()
+      .then(res => {
+        window.location = '/';
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
 
 return (
   // This is what we show when the user is not authenticated

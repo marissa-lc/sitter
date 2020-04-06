@@ -8,6 +8,11 @@ export default {
     })
   },
 
+  logout: function() {
+    return axios
+      .get("/api/logout")
+  },
+
   // // Gets all books
   // getBooks: function() {
   //   return axios.get("/api/books");
