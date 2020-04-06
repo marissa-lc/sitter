@@ -19,6 +19,10 @@ function updateSchedule(sched) {
   .catch(err => console.log(err));
 }
 
+function saveSchedule(sched) {
+  //TBD
+}
+
 
 function EditSchedule(props) {
   console.log("EditSchedule props", props);

@@ -84,11 +84,14 @@ module.exports = function(app) {
   });
 
 // mongo
-app.get("/api/schedule/:day", function(req, res) {
+app.get("/api/schedules/:day", function(req, res) {
+  console.log("INSIDE APP.GET IN API-ROUTES");
   console.log(req.params);
   mongoosedb.Schedule.find({day: req.params.day});
-  }).then(schedule => {
+  })
+  .then(schedule => {
     res.json(schedule);
-  }).catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
 
 };

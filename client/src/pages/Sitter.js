@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion, Card, Image, Col, Row, Container } from 'react-bootstrap';
 import Schedule from "../components/Schedule";
 // import Notes from "../components/Notes";
 import Emergency from "../components/Emergency";
@@ -37,18 +37,19 @@ function Sitter() {
 
 return (
   // This is what we show when the user is not authenticated
-  <div>
-    <div>
-      <img src="
-      /images/group-diverse-kids53876-27354/jpg" alt="kids"></img>
-    </div>
+  <div>   
   <Accordion defaultActiveKey="0">
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="0">
-        <h4>Schedule</h4>
+        <h4>Profile</h4>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="0">
         <Card.Body>THIS IS WHERE THE PROFILE WILL GO <br/>
+
+          <Col xs={6} md={4}>
+            <Image src="/images/finn_adventure.jpg" roundedCircle />
+          </Col>
+
           <button onClick={logout}>Logout</button>
         </Card.Body>
       </Accordion.Collapse>

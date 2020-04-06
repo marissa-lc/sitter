@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Card } from 'react-bootstrap';
+import { Button, Modal, Card, Form } from 'react-bootstrap';
 import Event from "./Event";
 import Notes from "./Notes";
 import EditSchedule from "./EditSchedule";
@@ -26,17 +26,17 @@ const scheduleTest = {
 
 // loadSchedule() (API call - handle form submit for the schedule page)
 
-function updateSchedule(sched) {
-  console.log("INSIDE UPDATESCHEDULE");
-  API.getSchedule(sched.day)
-  .then(result => {
-    console.log("result", result);
-    if (!result) {
-      API.saveSchedule(sched)
-    }
-  })
-  .catch(err => console.log(err));
-}
+// function updateSchedule(sched) {
+//   console.log("INSIDE UPDATESCHEDULE");
+//   API.getSchedule(sched.day)
+//   .then(result => {
+//     console.log("result", result);
+//     if (!result) {
+//       API.saveSchedule(sched)
+//     }
+//   })
+//   .catch(err => console.log(err));
+// }
 
 function Schedule(props) { // assume props=scheduleTest
   const [modalShow, setModalShow] = useState(false);
@@ -60,7 +60,10 @@ function Schedule(props) { // assume props=scheduleTest
           </div>
         ))}
       </ul>
-
+      <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Label><h5>Notes</h5></Form.Label>
+        <Form.Control as="textarea" rows="3" />
+      </Form.Group>
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Edit Schedule
       </Button>
