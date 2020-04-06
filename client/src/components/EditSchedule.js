@@ -2,6 +2,23 @@ import React from "react";
 import { Button, Modal, Form, Dropdown, DropdownButton } from 'react-bootstrap';
 import API from "../pages/utils/API";
 
+const scheduleTest = {
+  day: "Monday",
+  events: [{
+      time: "1:00 pm",
+      activity: "swimming lessons"
+    },
+    {
+      time: "2:30 pm",
+      activity: "homework"
+    },
+    {
+      time: "4:00 pm",
+      activity: "screen time (1 hour)"
+    }],
+    Notes: "Please make sure to put rise an hang out the bathing suit in the bathroom when you get home."
+}
+
 // do we know if the database has something in it?
 // is there anything to load? (are we already showing a schedule?)
 // if so, edit that, otherwise, create a new record

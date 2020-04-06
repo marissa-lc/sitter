@@ -1,13 +1,6 @@
 import axios from "axios";
-// const Url="https://www.googleapis.com/books/v1/";
-// let query = "";
 
 export default {
-  // getGoogleBooks: function(search) {
-  //   let query = "volumes?q=" + search;
-  //   return axios.get(Url + query)
-  // },
-
   login: function(email, password) {
     return axios.post("/api/login", {
       email: email,
@@ -33,8 +26,16 @@ export default {
     return axios.post("/api/schedules", scheduleData);
   },
   getSchedule: function(day) {
-    console.log("INSIDE GETSCHEDULE")
+    console.log("INSIDE GETSCHEDULE");
     return axios.get("/api/schedules/" + day);
+  },
+  getAllSchedules: function() {
+      console.log("INSIDE GETALLSCHEDULES");
+      return axios.get("/api/schedules");
+  },
+  addSchedule: function() {
+    console.log("INSIDE ADD SCHEDULE");
+    return axios.post("/api/schedules");
   }
 
   // put call - (replace)
