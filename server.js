@@ -1,11 +1,14 @@
 // Requiring necessary npm packages
 var express = require("express");
 var session = require("express-session");
+const mongoose = require("mongoose");
+const Schedule = require("./mongooseModels/schedule");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
 // Setting up port and requiring models for syncing
-var PORT = process.env.PORT || 8080;
+// var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3001;
 var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
@@ -22,9 +25,15 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
+// Connect to the Mongo DB
+console.log("MAKING MONGO CONNECTION");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/sitterData");
+let mongoDb = mongoose.connection;
+mongoDb.on("error", console.error.bind(console, "connection error:"));
+
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(function() {
+// db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
-    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
   });
-});
+// });
