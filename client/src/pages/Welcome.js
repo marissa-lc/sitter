@@ -2,7 +2,6 @@ import React from "react";
 import AuthNavbar from "../components/AuthNavbar";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
-import AddBio from "../components/addBio";
 
 function Welcome() {
   // const [formObject, setFormObject] = useState({
@@ -26,7 +25,6 @@ return (
     </div>
     <Login></Login>
     <Signup></Signup>
-    <AddBio></AddBio>
   </div>
   // We need to show something else if the user is authenticated
 )}
