@@ -83,15 +83,38 @@ module.exports = function(app) {
     }
   });
 
-// mongo
-// app.get("/api/schedules/:day", function(req, res) {
-//   console.log("INSIDE APP.GET IN API-ROUTES");
-//   console.log(req.params);
-//   mongoosedb.Schedule.find({day: req.params.day});
-//   })
-//   .then(schedule => {
-//     res.json(schedule);
-//   })
-//   .catch(err => console.log(err));
+  // mongo
+  // find by day: this works
+  app.get("/api/schedules/:day", function(req, res) {
+    console.log("INSIDE APP.GET IN API-ROUTES");
+    console.log(req.params);
+    mongoosedb.Schedule.find({day: req.params.day})
+    .then(dbResults => res.json(dbResults))
+    .catch(err => console.log(err));
+  })
+
+  // find all: broken (tried on postman only)
+  app.get("api/schedules", function(req, res) {
+    console.log("INSIDE APP.GET CALL FOR ALL SCHDEULES");
+    mongoosedb.Schedule.find(req.query)
+    .then(dbResult => res.json(dbResult))
+    .catch(err = res.status(422).json(err));
+  })
+
+  // create a record: broken
+  app.post("api/schedules", function(req, res) {
+    console.log("INSIDE APP.POST CALL TO CREATE RECORD");
+    console.log("request params", req.params);
+    mongoosedb.Schedule.create(req.body)
+    .then(dbResult => res.json(dbResult))
+    .catch(err => res.status(422).json(err));
+  })
+
+  // update a record
+  app.put("api/schedules", function(req, res) {
+    mongoosedb.Schedule.findOneAndUpdate({ day: req.params.day }, req.body)
+    .then(dbResult => res.json(dbResult))
+    .catch(err => res.status(422).json(err));
+  })
 
 };

@@ -1,9 +1,9 @@
-const router = require("express").Router();
 const db = require("../mongooseModels");
 
 // Defining methods for the schedulesController
 module.exports = {
   findAll: function(req, res) {
+    // console.log("req.query", req.query);
     db.Schedule
       .find(req.query)
       .sort({ date: -1 })
@@ -11,8 +11,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByDay: function(req, res) {
+    console.log("req.params", req.params);
     db.Schedule
-      .findById(req.params.day)
+      .find(req.params.day)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

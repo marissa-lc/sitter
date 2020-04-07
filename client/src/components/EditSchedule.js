@@ -28,8 +28,9 @@ function updateSchedule(sched) {
   console.log("INSIDE UPDATESCHEDULE");
   API.getSchedule(sched.day)
   .then(result => {
-    console.log("result", result);
-    if (!result) {
+    console.log("result", result.data);
+    if (result.data.length === 0) {
+      console.log("saving")
       API.saveSchedule(sched)
     }
   })

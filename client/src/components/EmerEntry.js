@@ -12,17 +12,17 @@ function EmerEntry(props) {
     centered
     >
     <div>
-       <div className="card text-center">
+       <div className="card">
         <div className="card-header">
-          Emergency Contact
+          Edit Emergency Contact
         </div>
         <form>
           <div className="form-row">
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-6 ml-2">
               <label htmlFor="firstName">First Name</label>
               <input type="firstName" className="form-control" id="firstName" placeholder="First Name" />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group col-md-6 ml-2">
               <label htmlFor="lastName">Last Name</label>
               <input type="lastName" className="form-control" id="lastName" placeholder="Last Name" />
             </div>
@@ -102,7 +102,7 @@ function EmerEntry(props) {
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail Address" />
           </div>
           <div className="form-group">
-            <label htmlFor="allergies">Let us know of any allergies, or other medical conditions you may have.</label>
+            <label htmlFor="allergies">Allergies, or other medical conditions</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
           </div>
           {/* <button type="submit" className="btn btn-primary">Submit</button> */}

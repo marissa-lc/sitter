@@ -32,6 +32,9 @@ app.use(cookieParser());
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
+// React client routes
+// require("./routes/index.js")(app)
+
 // Connect to the Mongo DB
 console.log("MAKING MONGO CONNECTION");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sitterData", {
@@ -39,8 +42,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sitterData", {
   useNewUrlParser: true,
   useUnifiedTopology: true
   });
-// let mongoDb = mongoose.connection;
-// mongoDb.on("error", console.error.bind(console, "connection error:"));
+let mongoDb = mongoose.connection;
+mongoDb.on("error", console.error.bind(console, "connection error:"));
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
