@@ -1,13 +1,49 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+var jwt = require('jsonwebtoken');
+var secret = 'appname-secret';
+const mongoosedb = require("../mongooseModels");
 
 module.exports = function(app) {
+  const withAuth = function(req, res, next) {
+    const token = 
+        req.body.token ||
+        req.query.token ||
+        req.headers['x-access-token'] ||
+        req.cookies.token;
+
+    if (!token) {
+      res.status(401).send('Unauthorized: No token provided');
+    } else {
+      jwt.verify(token, secret, function(err, decoded) {
+        if (err) {
+          res.status(401).send('Unauthorized: Invalid token');
+        } else {
+          req.email = decoded.email;
+          next();
+        }
+      });
+    }
+  }
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    res.json(req.user);
+    const email = req.user;
+    // Issue token
+    const payload = { email };
+    const token = jwt.sign(payload, secret, {
+      expiresIn: '1h'
+    });
+    res.cookie('token', token, { httpOnly: true })
+      .sendStatus(200);
+
+  });
+
+  app.get("/api/checkToken", withAuth, function(req, res) {
+    res.sendStatus(200);
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -28,9 +64,8 @@ module.exports = function(app) {
   });
 
   // Route for logging user out
-  app.get("/logout", function(req, res) {
-    req.logout();
-    res.redirect("/");
+  app.get("/api/logout", function(req, res) {
+     res.clearCookie('token').send('cookie has been deleted');
   });
 
   // Route for getting some data about our user to be used client side
@@ -47,4 +82,39 @@ module.exports = function(app) {
       });
     }
   });
+
+  // mongo
+  // find by day: this works
+  app.get("/api/schedules/:day", function(req, res) {
+    console.log("INSIDE APP.GET IN API-ROUTES");
+    console.log(req.params);
+    mongoosedb.Schedule.find({day: req.params.day})
+    .then(dbResults => res.json(dbResults))
+    .catch(err => console.log(err));
+  })
+
+  // find all: broken (tried on postman only)
+  app.get("api/schedules", function(req, res) {
+    console.log("INSIDE APP.GET CALL FOR ALL SCHDEULES");
+    mongoosedb.Schedule.find(req.query)
+    .then(dbResult => res.json(dbResult))
+    .catch(err = res.status(422).json(err));
+  })
+
+  // create a record: broken
+  app.post("api/schedules", function(req, res) {
+    console.log("INSIDE APP.POST CALL TO CREATE RECORD");
+    console.log("request params", req.params);
+    mongoosedb.Schedule.create(req.body)
+    .then(dbResult => res.json(dbResult))
+    .catch(err => res.status(422).json(err));
+  })
+
+  // update a record
+  app.put("api/schedules", function(req, res) {
+    mongoosedb.Schedule.findOneAndUpdate({ day: req.params.day }, req.body)
+    .then(dbResult => res.json(dbResult))
+    .catch(err => res.status(422).json(err));
+  })
+
 };

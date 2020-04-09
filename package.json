@@ -22,12 +22,18 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@material-ui/core": "^4.9.9",
+=======
+    "axios": "^0.19.2",
+>>>>>>> 70341ed3a7e5cdd38482a57a4b982699ac80ca18
     "bcryptjs": "2.4.3",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
     "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
