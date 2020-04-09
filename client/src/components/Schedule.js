@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import { Button, TextField } from '@material-ui/core';
-
-class Schedule extends Component {
-  render() {
-    return(function Schedule(props) {
-  console.log("formbtn props", props);
-=======
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Card, Form } from 'react-bootstrap';
 import Event from "./Event";
@@ -45,7 +36,6 @@ function Schedule(props) { // assume props=scheduleTest
 
   console.log("Event List", eventList);
   console.log("test", eventList[0])
->>>>>>> 70341ed3a7e5cdd38482a57a4b982699ac80ca18
   return (
     <div>
       <h5>{schedule.day}</h5>
@@ -76,11 +66,5 @@ function Schedule(props) { // assume props=scheduleTest
     </div>
   );
   }
-    )}
-}
 
-<<<<<<< HEAD
 export default Schedule;
-=======
-export default Schedule;
->>>>>>> 70341ed3a7e5cdd38482a57a4b982699ac80ca18
