@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { Button, Modal, Form, Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
+import React from 'react';
+// import React, { useState } from "react";
+import {Button, Modal, Form,  } from 'react-bootstrap'; 
+// Dropdown, DropdownButton, FormControl, 
 import API from "../pages/utils/API";
 
 function updateSchedule(sched) {
   console.log(sched)
   API.getSchedule(sched.day)
   .then(result => {
-    if (result.data[0]==[]) {
+    if (result.data[0]===[]) {
       console.log("saving")
       API.saveSchedule(sched)
     } else {

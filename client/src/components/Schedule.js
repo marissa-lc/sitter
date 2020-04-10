@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-// import React, { useState, useEffect } from "react";
-// import { Button, Modal, Card, Form } from 'react-bootstrap';
-=======
 import React, { useState, useEffect } from "react";
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
->>>>>>> 2df41fe87c53763411e39324f83a88e64a1e5948
 import Event from "./Event";
 import Notes from "./Notes";
 import EditSchedule from "./EditSchedule";
