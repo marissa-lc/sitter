@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Accordion, Card, Image, Col, Row, Container } from 'react-bootstrap';
 import Schedule from "../components/Schedule";
 import Emergency from "../components/Emergency";
+import Profile from "../components/Profile";
 import axios from "axios";
 import API from "./utils/API";
 
@@ -44,11 +45,7 @@ return (
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="0">
         <Card.Body>THIS IS WHERE THE PROFILE WILL GO <br/>
-
-          <Col xs={6} md={4}>
-            <Image src="/images/finn_adventure.jpg" roundedCircle />
-          </Col>
-
+            <Profile></Profile>
           <button onClick={logout}>Logout</button>
         </Card.Body>
       </Accordion.Collapse>
