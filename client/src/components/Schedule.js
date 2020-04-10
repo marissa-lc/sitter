@@ -7,7 +7,7 @@ import API from "../pages/utils/API";
 
 const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function Schedule() { // assume props=scheduleTest
+function Schedule() {
   const [modalShow, setModalShow] = useState(false);
   const [day, setDate] = useState(
     daysOfWeek[new Date().getDay()]
