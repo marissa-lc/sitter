@@ -1,44 +1,27 @@
-import React from "react";
-import { Button, Modal, Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, Modal, Form, Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
 import API from "../pages/utils/API";
 
-const scheduleTest = {
-  day: "Monday",
-  events: [{
-      time: "1:00 pm",
-      activity: "swimming lessons"
-    },
-    {
-      time: "2:30 pm",
-      activity: "homework"
-    },
-    {
-      time: "4:00 pm",
-      activity: "screen time (1 hour)"
-    }],
-    notes: "Please make sure to put rise an hang out the bathing suit in the bathroom when you get home."
-}
-
-// do we know if the database has something in it?
-// is there anything to load? (are we already showing a schedule?)
-// if so, edit that, otherwise, create a new record
-// if the day name is the same, replace the existing schedule for that day
-// otherwise, create a new item in the database
 function updateSchedule(sched) {
-  console.log("INSIDE UPDATESCHEDULE");
+  console.log(sched)
   API.getSchedule(sched.day)
   .then(result => {
-    console.log("result", result.data);
-    if (result.data.length === 0) {
+    if (result.data[0]==[]) {
       console.log("saving")
       API.saveSchedule(sched)
+    } else {
+      console.log("doing something else")
+      API.updateSchedule(sched)
     }
   })
   .catch(err => console.log(err));
 }
 
 
+
 function EditSchedule(props) {
+  // const [dayField, setDayField] = useState("");
+  // const [newSched, setNewSched] = useState(props.schedule)
   console.log("EditSchedule props", props);
 
   return (
@@ -56,33 +39,35 @@ function EditSchedule(props) {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group controlId="day">
-            <DropdownButton drop="right" id="dropdown-basic-button" title="Select Day">
-              <Dropdown.Item href="#/action-1">Monday</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Tuesday</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Wednesday</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Thursday</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Friday</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Saturday</Dropdown.Item>
-            </DropdownButton>
-            <Form.Control placeholder={props.schedule.day} />
-            <Form.Text className="text-muted">
-            </Form.Text>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Day</Form.Label>
+            {/* TODO: onSelect handler in the next line that updates the UI*/}
+            <Form.Control as="select" size="sm"> 
+              <option value="" disabled selected hidden>{props.schedule.day}</option>
+              <option>Sunday</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+            </Form.Control>
           </Form.Group>
+
           <ul>
             {props.schedule.events.map((event, index) => (
               <div key={index}>
                 <Form.Group controlId="events">
-                  <Form.Label>Event</Form.Label>
-                  <Form.Control placeholder={event.time} />
-                  <Form.Control placeholder={event.activity} />
+                  <Form.Label size="sm">Event</Form.Label>
+                  <Form.Control placeholder={event.time} size="sm"></Form.Control>
+                  <Form.Control placeholder={event.activity} size="sm"/>
                 </Form.Group>
               </div>
             ))}
           </ul>
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label><h5>Notes</h5></Form.Label>
-            <Form.Control as="textarea" rows="3" />
+            <Form.Control as="textarea" rows="3" size="sm"/>
           </Form.Group>
           {/* <Button variant="primary" type="submit">
             Submit
@@ -91,7 +76,7 @@ function EditSchedule(props) {
 
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => updateSchedule(props.schedule)}>Save</Button>
+        <Button onClick={() => props.editSchedule(props.saveSchedule)}>Save</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

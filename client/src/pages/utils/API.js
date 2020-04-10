@@ -29,10 +29,10 @@ export default {
   addSchedule: function() {
     console.log("INSIDE ADD SCHEDULE");
     return axios.post("/api/schedules");
-  }
+  },
 
   // put call - (replace)
-  // updateSchedule: function(scheduleData) {
-  //   return axios.put("/api/schedule", scheduleData);
-  // }
+  updateSchedule: function(scheduleData) {
+    return axios.put("/api/schedule", scheduleData);
+  }
 };

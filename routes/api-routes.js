@@ -93,16 +93,16 @@ module.exports = function(app) {
     .catch(err => console.log(err));
   })
 
-  // find all: broken (tried on postman only)
-  app.get("api/schedules", function(req, res) {
-    console.log("INSIDE APP.GET CALL FOR ALL SCHDEULES");
-    mongoosedb.Schedule.find(req.query)
+  // get all schedules: 422 error
+  app.get("/api/schedules", function(req, res) {
+    console.log("INSIDE APP.GET CALL FOR ALL SCHDEULES", req.params);
+    mongoosedb.Schedule.find().all(req.params)
     .then(dbResult => res.json(dbResult))
     .catch(err = res.status(422).json(err));
   })
 
-  // create a record: broken
-  app.post("api/schedules", function(req, res) {
+  // create a record: I think this works
+  app.post("/api/schedules", function(req, res) {
     console.log("INSIDE APP.POST CALL TO CREATE RECORD");
     console.log("request params", req.params);
     mongoosedb.Schedule.create(req.body)
@@ -110,8 +110,8 @@ module.exports = function(app) {
     .catch(err => res.status(422).json(err));
   })
 
-  // update a record
-  app.put("api/schedules", function(req, res) {
+  // update a record: 
+  app.put("/api/schedules", function(req, res) {
     mongoosedb.Schedule.findOneAndUpdate({ day: req.params.day }, req.body)
     .then(dbResult => res.json(dbResult))
     .catch(err => res.status(422).json(err));

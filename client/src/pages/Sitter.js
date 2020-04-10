@@ -21,7 +21,7 @@ function Sitter() {
         console.error(err);
         logout();
       });
-  });
+  }, []);
 
 
   function logout() {
