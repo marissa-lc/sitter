@@ -65,6 +65,6 @@ function Schedule(props) { // assume props=scheduleTest
       />
     </div>
   );
-}
+  }
 
 export default Schedule;
