@@ -45,22 +45,22 @@ function Schedule() {
     // how do I know which button pushing?
   }
 
-  // function saveSchedule(schedule) { // save schedule
-  //   // event.preventDefault();
-  //   console.log(schedule);
-  //   API.getSchedule(schedule.day)
-  //   .then(result => {
-  //     if (result.data[0]==[]) {
-  //       console.log("saving")
-  //       API.saveSchedule(schedule)
-  //     } else {
-  //       console.log("doing something else");
-  //       //TODO: make sure the form also closes
-  //       API.updateSchedule(schedule);
-  //     }
-  //   })
-  //   .catch(err => console.log(err));
-  // }
+  function saveSchedule(schedule) { // save schedule
+    schedule.preventDefault();
+    console.log(schedule);
+    API.getSchedule(schedule.day)
+    .then(result => {
+      if (result.data[0]==[]) {
+        console.log("saving")
+        API.saveSchedule(schedule)
+      } else {
+        console.log("doing something else");
+        //TODO: make sure the form also closes
+        API.updateSchedule(schedule);
+      }
+    })
+    .catch(err => console.log(err));
+  }
 
   // console.log("Event List", eventList);
   return (
@@ -99,7 +99,7 @@ function Schedule() {
         addEvent={addEvent}
         deleteEvent={deleteEvent}
         // loadDailySchedule={loadailyschedule}
-        // saveSchedule={saveSchedule}
+        saveSchedule={saveSchedule}
       />
     </div>
   );

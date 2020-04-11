@@ -33,7 +33,7 @@ export default {
 
   // put call - (replace)
   updateSchedule: function(scheduleData) {
-    console.log("INSIDE GET SCHEDULE")
+    console.log("INSIDE UPDATE SCHEDULE")
     return axios.put("/api/schedules", scheduleData);
   }
 };

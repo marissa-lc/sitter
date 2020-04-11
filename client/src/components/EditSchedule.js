@@ -3,20 +3,20 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import API from "../pages/utils/API";
 // import Schedule from "./Schedule";
 
-function updateSchedule(sched) {
-  console.log(sched)
-  API.getSchedule(sched.day)
-  .then(result => {
-    if (result.data[0]==[]) {
-      console.log("saving")
-      API.saveSchedule(sched)
-    } else {
-      console.log("doing something else")
-      API.updateSchedule(sched)
-    }
-  })
-  .catch(err => console.log(err));
-}
+// function updateSchedule(sched) {
+//   console.log(sched)
+//   API.getSchedule(sched.day)
+//   .then(result => {
+//     if (result.data[0]==[]) {
+//       console.log("saving")
+//       API.saveSchedule(sched)
+//     } else {
+//       console.log("doing something else")
+//       API.updateSchedule(sched)
+//     }
+//   })
+//   .catch(err => console.log(err));
+// }
 
 
 function EditSchedule(props) {
@@ -35,9 +35,9 @@ function EditSchedule(props) {
     updateSchedule(event.target.value);
   }
 
-  function saveSchedule(schedule) { // save schedule
-    // event.preventDefault();
-    console.log(schedule);
+  function updateSchedule(schedule) { // save schedule
+    schedule.preventDefault();
+    console.log(schedule.currentTarget);
     API.getSchedule(schedule.day)
     .then(result => {
       if (result.data[0]==[]) {
@@ -66,14 +66,14 @@ function EditSchedule(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={(event)=>updateSchedule(event)}>
         <Form.Label>{props.schedule.day}</Form.Label>
           <ul>
             {props.schedule.events.map((event, index) => (
               <div key={index}>
                 <Form.Group controlId="events">
                   <Form.Label size="sm">Event</Form.Label>
-                  <Form.Control placeholder={event.time} size="sm" onChange={newEvents[index]===event.time}></Form.Control>
+                  <Form.Control placeholder={event.time} size="sm"></Form.Control>
                   <Form.Control placeholder={event.activity} size="sm"></Form.Control>
                 </Form.Group>
               </div>
@@ -83,12 +83,12 @@ function EditSchedule(props) {
             <Form.Label><h5>Notes</h5></Form.Label>
             <Form.Control as="textarea" rows="3" size="sm">{props.schedule.notes}</Form.Control>
           </Form.Group>
-          <Button onSubmit={()=>saveSchedule(props.schedule)}>Save</Button>
+          <Button type="submit">Save</Button>
         </Form>
 
       </Modal.Body>
       <Modal.Footer>
-        {/* <Button onSubmit={()=>saveSchedule(props.schedule)}>Save</Button> */}
+        {/* <Button onClick={(event)=>props.saveSchedule(event)}>Save</Button> */}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
