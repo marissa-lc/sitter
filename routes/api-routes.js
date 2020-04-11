@@ -112,6 +112,8 @@ module.exports = function(app) {
 
   // update a record: 
   app.put("/api/schedules", function(req, res) {
+    console.log(req.params.day);
+    console.log(req.body);
     mongoosedb.Schedule.findOneAndUpdate({ day: req.params.day }, req.body)
     .then(dbResult => res.json(dbResult))
     .catch(err => res.status(422).json(err));
