@@ -27,7 +27,7 @@ function Profile(props) {
             </div>
           </div>
         <Button onClick={() => props.logoutClick()}>Logout</Button>
-        <Button onClick={()=>setModalShow(true)}>Edit Profile</Button>
+        <Button onClick={()=>setModalShow(true)}>Add Profile</Button>
       <AddBio
         show={modalShow}
         onHide={() => setModalShow(false)}
