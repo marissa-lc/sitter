@@ -36,16 +36,16 @@ function AddBio(props) {
               <textarea className="form-control" id="bio" rows={3} defaultValue={""} />
             </div>
           </div>
-          {'{'}/* <button type="submit" className="btn btn-primary">Submit</button> */{'}'}
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
    
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
+      <div className="modal-footer">
+        <button onClick={()=>props.onHide()}>Close</button>
+      </div>
 
 
-    </Modal>
+      </Modal>
   );
 }
 

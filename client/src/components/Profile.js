@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal } from 'react-bootstrap';
+import AddBio from "./AddBio";
 
 const test = {
   name: "Finn",
@@ -25,8 +26,12 @@ function Profile(props) {
               Notes: {test.notes} <br />
             </div>
           </div>
-        <Button onClick={test.logoutClick}>Logout</Button>
-        <Button onClick={test.onHide}>Edit profile</Button>
+        <Button onClick={() => props.logoutClick()}>Logout</Button>
+        <Button onClick={()=>setModalShow(true)}>Edit Profile</Button>
+      <AddBio
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }
