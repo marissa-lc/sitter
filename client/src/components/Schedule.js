@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
-import Event from "./Event";
-import Notes from "./Notes";
 import EditSchedule from "./EditSchedule";
 import API from "../pages/utils/API";
 
@@ -9,7 +7,7 @@ const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fri
 
 function Schedule() {
   const [modalShow, setModalShow] = useState(false);
-  const [day, setDate] = useState(
+  const [day, setDay] = useState(
     daysOfWeek[new Date().getDay()]
   )
   const [schedule, setSchedule] = useState({
@@ -29,7 +27,7 @@ function Schedule() {
   }
 
   useEffect(() => {
-    loadschedule("Saturday"); // this is a test
+    loadschedule(day); // this is a test
     console.log(day);
   }, []);
 
@@ -81,10 +79,10 @@ function Schedule() {
       <ul>
         {schedule.events.map((event, index) => (
           <div key={index}>
-            <Event
-              time={event.time}
-              activity={event.activity}
-            ></Event>
+            {/* <Event */}
+            time={event.time}
+            activity={event.activity}
+            {/* ></Event> */}
           </div>
         ))}
       </ul>

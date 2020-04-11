@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
+import { Button, Modal, Form } from 'react-bootstrap';
 import API from "../pages/utils/API";
-import Schedule from "./Schedule";
+// import Schedule from "./Schedule";
 
 function updateSchedule(sched) {
   console.log(sched)
@@ -25,7 +25,7 @@ function EditSchedule(props) {
   const [newNotes, setNotes] = useState(props.schedule.notes);
 
   function handleSubmit(event) {
-    console.log();
+    console.log(event);
     event.preventDefault();
   }
 
@@ -83,14 +83,12 @@ function EditSchedule(props) {
             <Form.Label><h5>Notes</h5></Form.Label>
             <Form.Control as="textarea" rows="3" size="sm">{props.schedule.notes}</Form.Control>
           </Form.Group>
-          {/* <Button variant="primary" type="submit">
-            Submit
-          </Button> */}
+          <Button onSubmit={()=>saveSchedule(props.schedule)}>Save</Button>
         </Form>
 
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={()=>saveSchedule(props.schedule)}>Save</Button>
+        {/* <Button onSubmit={()=>saveSchedule(props.schedule)}>Save</Button> */}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
