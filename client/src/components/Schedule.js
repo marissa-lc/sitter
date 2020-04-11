@@ -7,7 +7,7 @@ import API from "../pages/utils/API";
 
 const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function Schedule() { // assume props=scheduleTest
+function Schedule() {
   const [modalShow, setModalShow] = useState(false);
   const [day, setDate] = useState(
     daysOfWeek[new Date().getDay()]
@@ -19,6 +19,7 @@ function Schedule() { // assume props=scheduleTest
   });
 
   function loadDailySchedule(day) {
+    console.log("change schedule")
     API.getSchedule(day)
     .then(result => {
       console.log(result);
@@ -28,12 +29,13 @@ function Schedule() { // assume props=scheduleTest
   }
 
   useEffect(() => {
-    loadDailySchedule(day); // this is a test
+    loadDailySchedule("Saturday"); // this is a test
     console.log(day);
   }, []);
 
   function addEvent(newEvents) {
-    // schedule.event.post (add it to the end of the events)
+    // schedule.event.post (add it to the end of the events array)
+    // and then somehow the form needs to be updated
     schedule.events.push({
       time: "",
       activity: ""
@@ -41,11 +43,12 @@ function Schedule() { // assume props=scheduleTest
   }
 
   function deleteEvent(index) {
-    // need the index of the event you want to delete
+    // need the index of the event you want to delete in the array
+    // how do I know which button pushing?
   }
 
   function saveSchedule(event) { // save schedule
-    event.preventDefault();
+    // event.preventDefault();
     console.log(schedule);
     API.getSchedule(schedule.day)
     .then(result => {
@@ -97,6 +100,7 @@ function Schedule() { // assume props=scheduleTest
         schedule={schedule}
         addEvent={addEvent}
         deleteEvent={deleteEvent}
+        loadDailySchedule={loadDailySchedule}
         saveSchedule={saveSchedule}
       />
     </div>
