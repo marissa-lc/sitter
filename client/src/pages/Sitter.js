@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import axios from "axios";
 import API from "./utils/API";
 
+
 function Sitter() {
   const [ loading, setLoading ] = useState(false);
 
@@ -37,7 +38,8 @@ function Sitter() {
 
 return (
   // This is what we show when the user is not authenticated
-  <div>   
+  <div> 
+    <img src="/images/sitter-logo.png" class="center"></img>
   <Accordion defaultActiveKey="0">
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="0">
