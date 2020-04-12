@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Dropdown, DropdownButton, Modal, Form } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton, Modal, Form, Card } from 'react-bootstrap';
 import EditSchedule from "./EditSchedule";
 import API from "../pages/utils/API";
 
@@ -16,34 +16,35 @@ function Schedule() {
     notes: ""
   });
 
-  function loadschedule(day) {
+  function loadSchedule(day) {
     console.log("change schedule")
     API.getSchedule(day)
     .then(result => {
-      // console.log(result);
       result.data[0] && setSchedule(result.data[0]);
     })
     .catch(err => console.log(err));
   }
 
+  // function onDaySelect(event, day) {
+  //   event.preventDefault();
+  //   loadSchedule(day);
+  // }
+
   useEffect(() => {
-    loadschedule(day); // this is a test
+    loadSchedule(day); // this is a test
     console.log(day);
   }, []);
 
-  function addEvent(newEvents) {
-    // schedule.event.post (add it to the end of the events array)
-    // and then somehow the form needs to be updated
-    schedule.events.push({
-      time: "",
-      activity: ""
-    })
-  }
+  // function addEvent(event) {
+  //   // schedule.event.post (add it to the end of the events array)
+  //   // and then update the a
+  //   schedule.events.push(event);
+  // }
 
-  function deleteEvent(index) {
-    // need the index of the event you want to delete in the array
-    // how do I know which button pushing?
-  }
+  // function deleteEvent(index) {
+  //   // need the index of the event you want to delete in the array
+  //   // how do I know which button pushing?
+  // }
 
   function updateSchedule(schedule) { // save schedule
     schedule.preventDefault();
@@ -64,44 +65,80 @@ function Schedule() {
 
   // console.log("Event List", eventList);
   return (
-    <div>
-      <DropdownButton drop="right" id="dropdown-basic-button" title="Select Day">
-        <Dropdown.Item href="#/action-1" onSelect={() => loadschedule("Sunday")}>Sunday</Dropdown.Item>
-        <Dropdown.Item href="#/action-2" onSelect={() => loadschedule("Monday")}>Monday</Dropdown.Item>
-        <Dropdown.Item href="#/action-3" onSelect={() => loadschedule("Tuesday")}>Tuesday</Dropdown.Item>
-        <Dropdown.Item href="#/action-4" onSelect={() => loadschedule("Wednesday")}>Wednesday</Dropdown.Item>
-        <Dropdown.Item href="#/action-5" onSelect={() => loadschedule("Thursday")}>Thursday</Dropdown.Item>
-        <Dropdown.Item href="#/action-6" onSelect={() => loadschedule("Friday")}>Friday</Dropdown.Item>
-        <Dropdown.Item href="#/action-7" onSelect={() => loadschedule("Saturday")}>Saturday</Dropdown.Item>
-      </DropdownButton>
 
-      <h5>{schedule.day}</h5>
-      <ul>
-        {schedule.events.map((event, index) => (
-          <div key={index}>
-            {/* <Event */}
-            {event.time}: {event.activity}
-            {/* ></Event> */}
-          </div>
-        ))}
-      </ul>
-      <h5>Notes</h5>
-      <p>{schedule.notes}</p>
-
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Edit Schedule
-      </Button>
-      <EditSchedule
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          schedule={schedule}
-          addEvent={addEvent}
-          deleteEvent={deleteEvent}
-          // saveSchedule={updateSchedule}
-          reloadSchedule={loadschedule}
+    <Card border="primary">
+      <Card.Body>
+        <DropdownButton drop="right" id="dropdown-basic-button" title="Select Day">
+          <Dropdown.Item onSelect={() => loadSchedule("Sunday")}>Sunday</Dropdown.Item>
+          <Dropdown.Item href="#/action-2" onSelect={() => loadSchedule("Monday")}>Monday</Dropdown.Item>
+          <Dropdown.Item href="#/action-3" onSelect={() => loadSchedule("Tuesday")}>Tuesday</Dropdown.Item>
+          <Dropdown.Item href="#/action-4" onSelect={() => loadSchedule("Wednesday")}>Wednesday</Dropdown.Item>
+          <Dropdown.Item href="#/action-5" onSelect={() => loadSchedule("Thursday")}>Thursday</Dropdown.Item>
+          <Dropdown.Item href="#/action-6" onSelect={() => loadSchedule("Friday")}>Friday</Dropdown.Item>
+          <Dropdown.Item href="#/action-7" onSelect={() => loadSchedule("Saturday")}>Saturday</Dropdown.Item>
+        </DropdownButton>
+        <Card.Title>{schedule.day}</Card.Title>
+        <Card.Text>
+          {schedule.events.map((event, index) => (
+            <div key={index}>
+              {event.time}: {event.activity}
+            </div>
+          ))}
+          <h4>Notes</h4>
+          <p>{schedule.notes}</p>
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="primary" onClick={() => setModalShow(true)}>
+          Edit Schedule
+        </Button>
+        <EditSchedule
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            schedule={schedule}
+            // addEvent={addEvent}
+            // deleteEvent={deleteEvent}
+            // saveSchedule={updateSchedule}
+            reloadSchedule={loadSchedule}
         />
+      </Card.Footer>
+      </Card>
 
-    </div>
+
+    // <div>
+    //   <DropdownButton drop="right" id="dropdown-basic-button" title="Select Day">
+    //     <Dropdown.Item onSelect={() => loadSchedule("Sunday")}>Sunday</Dropdown.Item>
+    //     <Dropdown.Item href="#/action-2" onSelect={() => loadSchedule("Monday")}>Monday</Dropdown.Item>
+    //     <Dropdown.Item href="#/action-3" onSelect={() => loadSchedule("Tuesday")}>Tuesday</Dropdown.Item>
+    //     <Dropdown.Item href="#/action-4" onSelect={() => loadSchedule("Wednesday")}>Wednesday</Dropdown.Item>
+    //     <Dropdown.Item href="#/action-5" onSelect={() => loadSchedule("Thursday")}>Thursday</Dropdown.Item>
+    //     <Dropdown.Item href="#/action-6" onSelect={() => loadSchedule("Friday")}>Friday</Dropdown.Item>
+    //     <Dropdown.Item href="#/action-7" onSelect={() => loadSchedule("Saturday")}>Saturday</Dropdown.Item>
+    //   </DropdownButton>
+
+    //   <h5>{schedule.day}</h5>
+    //     {schedule.events.map((event, index) => (
+    //       <div key={index}>
+    //         {event.time}: {event.activity}
+    //       </div>
+    //     ))}
+    //   <h5>Notes</h5>
+    //   <p>{schedule.notes}</p>
+
+    //   <Button variant="primary" onClick={() => setModalShow(true)}>
+    //     Edit Schedule
+    //   </Button>
+    //   <EditSchedule
+    //       show={modalShow}
+    //       onHide={() => setModalShow(false)}
+    //       schedule={schedule}
+    //       // addEvent={addEvent}
+    //       // deleteEvent={deleteEvent}
+    //       // saveSchedule={updateSchedule}
+    //       reloadSchedule={loadSchedule}
+    //     />
+
+    // </div>
   );
   }
 
