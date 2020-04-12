@@ -9,19 +9,11 @@ function EditSchedule(props) {
     notes: ""
   };
 
-  useEffect(() => {
-    // console.log(newNotes);
-    // console.log("just book data", bookData);
-    // console.log(bookData[0].volumeInfo.imageLinks);
-    // console.log("FORMOBJECT", formObject);
-  })
-
   function submitNewSched(event) {
     event.preventDefault();
     console.log(event);
     if (updatedSched.day || updatedSched.notes) {
       updateSchedule(updatedSched);
-      // props.reloadSchedule(updatedSched.day);
     }
   }
 

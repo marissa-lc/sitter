@@ -7,7 +7,7 @@ const test = {
   name: "Finn",
   age: 7,
   type: "child",
-  notes: "Finn is an independent child who is very attached to his dog."
+  notes: "Finn is an independent child who is very attached to his dog. He is allergic to tree nuts (almonds, walnuts, etc.). Bring the epi pen if you're going where there might be food offered."
 }
 
 const test2 = {
@@ -26,25 +26,6 @@ function Profile(props) {
   return (
     <div
     {...props}>
-          {/* <div className="row">
-            <div className="col-md-6 col-xs-12">
-              <div className="justify-content-center">
-                <h5>This profile is for a {test.type}</h5>
-                <img src={test.imageURL} className="rounded-circle border" /><br />
-              </div>
-              <b>Name:</b> {test.name}<br />
-              <b>Age:</b> {test.age}<br/>
-              <b>Notes:</b> {test.notes}<br />
-            </div>
-            <div className="col-md-6 col-xs-12">
-              <h5>This profile is for a {test2.type}</h5>
-              <img src={test2.imageURL} className="rounded-circle border" /><br />
-              <b>Name:</b> {test2.name}<br />
-              <b>Age:</b> {test2.age}<br/>
-              <b>Notes:</b> {test2.notes}<br />
-            </div>
-          </div> */}
-
         <CardGroup>
           <Card border="primary">
             <Card.Body>

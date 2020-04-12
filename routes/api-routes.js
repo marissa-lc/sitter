@@ -117,7 +117,6 @@ module.exports = function(app) {
     console.log("day:", req.body.day);
     console.log("events:", req.body.events);
     console.log("notes:", req.body.notes);
-    // mongoosedb.Schedule.findOneAndUpdate({ day: req.body.day }, req.body)
     mongoosedb.Schedule.findOneAndUpdate({ day: req.body.day }, {
       "$set": {events: req.body.events, notes: req.body.notes}
     })
