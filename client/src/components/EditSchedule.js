@@ -1,46 +1,53 @@
-import React, { useState } from "react";
-import { Button, Modal, Form, Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from "react";
+import { Button, Modal, Form } from 'react-bootstrap';
 import API from "../pages/utils/API";
-import Schedule from "./Schedule";
+// import Schedule from "./Schedule";
 
-function updateSchedule(sched) {
-  console.log(sched)
-  API.getSchedule(sched.day)
-  .then(result => {
-    if (result.data[0]==[]) {
-      console.log("saving")
-      API.saveSchedule(sched)
-    } else {
-      console.log("doing something else")
-      API.updateSchedule(sched)
-    }
-  })
-  .catch(err => console.log(err));
-}
+// function updateSchedule(sched) {
+//   console.log(sched)
+//   API.getSchedule(sched.day)
+//   .then(result => {
+//     if (result.data[0]==[]) {
+//       console.log("saving")
+//       API.saveSchedule(sched)
+//     } else {
+//       console.log("doing something else")
+//       API.updateSchedule(sched)
+//     }
+//   })
+//   .catch(err => console.log(err));
+// }
 
 
 function EditSchedule(props) {
   const [newSched, setNewSched] = useState(props.schedule); // this totally doesn't work
   const [newEvents, setEvents] = useState([]);
-  const [newNotes, setNotes] = useState(props.schedule.notes);
+  let updatedSched = {
+    day: "",
+    events: [],
+    notes: ""
+  };
+  // const { updateSchedule } = useForm();
+  // const newNotes = useRef(null);
 
-  function handleSubmit(event) {
-    console.log();
-    event.preventDefault();
-  }
+  useEffect(() => {
+    // console.log(newNotes);
+    // console.log("just book data", bookData);
+    // console.log(bookData[0].volumeInfo.imageLinks);
+    // console.log("FORMOBJECT", formObject);
+  })
 
-  function handleChange(event) {
+  function submitNewSched(event) {
     console.log(event);
-    console.log(event.target.value);
-    updateSchedule(event.target.value);
+    event.preventDefault();
+    updateSchedule(updatedSched);
   }
 
-  function saveSchedule(schedule) { // save schedule
-    // event.preventDefault();
+  function updateSchedule(schedule) { // save schedule
     console.log(schedule);
     API.getSchedule(schedule.day)
     .then(result => {
-      if (result.data[0]==[]) {
+      if (result.data[0]===[]) {
         console.log("saving")
         API.saveSchedule(schedule)
       } else {
@@ -50,6 +57,35 @@ function EditSchedule(props) {
       }
     })
     .catch(err => console.log(err));
+  }
+
+  function setNewValue(event) {
+    updatedSched.day = props.schedule.day;
+    updatedSched.events = props.schedule.events;
+    let name = event.nativeEvent.target.getAttribute("name");
+    let idx = event.nativeEvent.target.parentNode.getAttribute("idx");
+    let value = event.nativeEvent.target.value;
+
+    let newValue = event.nativeEvent.target.value;
+    console.log(updatedSched.events);
+    console.log(props.schedule.day);
+    console.log(newValue);
+    console.log(event.nativeEvent.target.parentNode);
+    console.log(idx);
+    console.log(name);
+
+    if (value) {
+      if (idx && name === "time") {
+        updatedSched.events[idx].time = value;
+      }
+      else if (idx) {
+        updatedSched.events[idx].activity = value;
+      } else {
+        updatedSched.notes = value;
+      }
+    }
+
+    console.log(updatedSched);
   }
 
   return (
@@ -66,31 +102,36 @@ function EditSchedule(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+      <Form onSubmit={submitNewSched}>
         <Form.Label>{props.schedule.day}</Form.Label>
-          <ul>
+          {/* <ul> */}
             {props.schedule.events.map((event, index) => (
               <div key={index}>
-                <Form.Group controlId="events">
+                <Form.Group idx={index}>
                   <Form.Label size="sm">Event</Form.Label>
-                  <Form.Control placeholder={event.time} size="sm" onChange={newEvents[index]===event.time}></Form.Control>
-                  <Form.Control placeholder={event.activity} size="sm"></Form.Control>
+                  <Form.Control name="time" onBlur={event=>setNewValue(event)} placeholder={event.time} size="sm"></Form.Control>
+                  <Form.Control name="activity" onBlur={event=>setNewValue(event)} placeholder={event.activity} size="sm"></Form.Control>
                 </Form.Group>
               </div>
             ))}
-          </ul>
+          {/* </ul> */}
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label><h5>Notes</h5></Form.Label>
-            <Form.Control as="textarea" rows="3" size="sm">{props.schedule.notes}</Form.Control>
+            <Form.Control
+              name="notes"
+              onBlur={event=>setNewValue(event)}
+              as="textarea"
+              rows="3"
+              size="sm"
+              placeholder={props.schedule.notes}
+              />
           </Form.Group>
-          {/* <Button variant="primary" type="submit">
-            Submit
-          </Button> */}
+          <Button type="submit">Save</Button>
         </Form>
 
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={()=>saveSchedule(props.schedule)}>Save</Button>
+        {/* <Button onClick={(event)=>props.saveSchedule(event)}>Save</Button> */}
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
-import Event from "./Event";
-import Notes from "./Notes";
+import { Button, Dropdown, DropdownButton, Modal, Form } from 'react-bootstrap';
 import EditSchedule from "./EditSchedule";
 import API from "../pages/utils/API";
 
@@ -9,7 +7,7 @@ const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fri
 
 function Schedule() {
   const [modalShow, setModalShow] = useState(false);
-  const [day, setDate] = useState(
+  const [day, setDay] = useState(
     daysOfWeek[new Date().getDay()]
   )
   const [schedule, setSchedule] = useState({
@@ -22,14 +20,14 @@ function Schedule() {
     console.log("change schedule")
     API.getSchedule(day)
     .then(result => {
-      console.log(result);
+      // console.log(result);
       result.data[0] && setSchedule(result.data[0]);
     })
     .catch(err => console.log(err));
   }
 
   useEffect(() => {
-    loadschedule("Saturday"); // this is a test
+    loadschedule(day); // this is a test
     console.log(day);
   }, []);
 
@@ -47,22 +45,22 @@ function Schedule() {
     // how do I know which button pushing?
   }
 
-  // function saveSchedule(schedule) { // save schedule
-  //   // event.preventDefault();
-  //   console.log(schedule);
-  //   API.getSchedule(schedule.day)
-  //   .then(result => {
-  //     if (result.data[0]==[]) {
-  //       console.log("saving")
-  //       API.saveSchedule(schedule)
-  //     } else {
-  //       console.log("doing something else");
-  //       //TODO: make sure the form also closes
-  //       API.updateSchedule(schedule);
-  //     }
-  //   })
-  //   .catch(err => console.log(err));
-  // }
+  function updateSchedule(schedule) { // save schedule
+    schedule.preventDefault();
+    console.log(schedule);
+    API.getSchedule(schedule.day)
+    .then(result => {
+      if (result.data[0]==[]) {
+        console.log("saving")
+        API.saveSchedule(schedule)
+      } else {
+        console.log("doing something else");
+        //TODO: make sure the form also closes
+        API.updateSchedule(schedule);
+      }
+    })
+    .catch(err => console.log(err));
+  }
 
   // console.log("Event List", eventList);
   return (
@@ -81,10 +79,9 @@ function Schedule() {
       <ul>
         {schedule.events.map((event, index) => (
           <div key={index}>
-            <Event
-              time={event.time}
-              activity={event.activity}
-            ></Event>
+            {/* <Event */}
+            {event.time}: {event.activity}
+            {/* ></Event> */}
           </div>
         ))}
       </ul>
@@ -95,14 +92,15 @@ function Schedule() {
         Edit Schedule
       </Button>
       <EditSchedule
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        schedule={schedule}
-        addEvent={addEvent}
-        deleteEvent={deleteEvent}
-        // loadDailySchedule={loadailyschedule}
-        // saveSchedule={saveSchedule}
-      />
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          schedule={schedule}
+          addEvent={addEvent}
+          deleteEvent={deleteEvent}
+          // saveSchedule={updateSchedule}
+          reloadSchedule={loadschedule}
+        />
+
     </div>
   );
   }
