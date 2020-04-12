@@ -37,15 +37,21 @@ function Sitter() {
     }
 
 return (
-  // This is what we show when the user is not authenticated
-  <div> 
-    <img src="/images/sitter-logo.png" class="center"></img>
   <Accordion defaultActiveKey="0">
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="0">
-        <h4>Profile</h4>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="0">
+        <Card.Body className="">
+        <Image fluid src="/images/sitter-logo.png" className="center"/>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey="1">
+        <h4>Profile</h4>
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey="1">
         <Card.Body>
             <Profile 
               logoutClick={logout}
@@ -54,28 +60,26 @@ return (
       </Accordion.Collapse>
     </Card>
     <Card>
-      <Accordion.Toggle as={Card.Header} eventKey="1">
+      <Accordion.Toggle as={Card.Header} eventKey="2">
         <h4>Schedule</h4>
       </Accordion.Toggle>
-      <Accordion.Collapse eventKey="1">
+      <Accordion.Collapse eventKey="2">
         <Card.Body>
           <Schedule></Schedule>
         </Card.Body>
       </Accordion.Collapse>
     </Card>
     <Card>
-      <Accordion.Toggle as={Card.Header} eventKey="2">
+      <Accordion.Toggle as={Card.Header} eventKey="3">
         <h4>Emergency Contact Information</h4>
       </Accordion.Toggle>
-      <Accordion.Collapse eventKey="2">
+      <Accordion.Collapse eventKey="3">
         <Card.Body>
           <Emergency></Emergency>
         </Card.Body>
       </Accordion.Collapse>
     </Card>
   </Accordion>
-  </div>
-  // We need to show something else if the user is authenticated
 )}
 
 export default Sitter;

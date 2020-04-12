@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import EmerEntry from "./EmerEntry";
 // import CenteredModal from "./CenteredModal";
 
@@ -12,7 +12,7 @@ const contactTest = {
   state: "OR",
   phone: "503-555-5555",
   email: "bjones1234@gmail.com",
-  notes: "Allergic to tree nuts (almonds, walnuts, etc.). Bring epi pen on all outings just in case."
+  notes: "Allergic to tree nuts (almonds, walnuts, etc.)."
 }
 
 function Emergency(props) {
@@ -20,41 +20,30 @@ function Emergency(props) {
 
   console.log("event props", props);
   return (
-    <Container>
-      <Row>
-        <Col sm={12} md={3}><h5>Name:</h5></Col>
-        <Col sm={12} md={9}>{contactTest.firstname + " " + contactTest.lastname}</Col>
-      </Row>
-      <Row>
-        <Col sm={12} md={3}><h5>Relationship:</h5></Col>
-        <Col sm={12} md={9}>{contactTest.relationship}</Col>
-      </Row>
-      <Row>
-      <Col sm={12} md={3}><h5>Address</h5></Col>
-      <Col sm={12} md={9}>{contactTest.address + " " + contactTest.city + ", " + contactTest.state}</Col>
-      </Row>
-      <Row>
-        <Col sm={12} md={3}><h5>Phone Number:</h5></Col>
-        <Col sm={12} md={9}>{contactTest.phone}</Col>
-      </Row>
-      <Row>
-        <Col sm={12} md={3}><h5>email address:</h5></Col>
-        <Col sm={12} md={9}>{contactTest.email}</Col>
-      </Row>
-      <Row>
-        <Col sm={12}><h5>Allergies and conditions:</h5></Col>
-        <Col sm={12}>{contactTest.notes}</Col>
-      </Row>
-      <br/>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Edit Emergency Contact
-      </Button>
-      <EmerEntry
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-      
-    </Container>
+
+    <Card border="primary">
+      <Card.Body>
+        <Card.Title>Emergency Contact</Card.Title>
+        <Card.Text>
+          <b>Name:</b> {contactTest.firstname + " " + contactTest.lastname}<br />
+          <b>Relationship:</b> {contactTest.relationship}<br/>
+          <b>Adress:</b> {contactTest.address + " " + contactTest.city + ", " + contactTest.state}<br />
+          <b>Phone Number:</b> {contactTest.phone}<br/>
+          <b>Eail Address:</b> {contactTest.email}<br/>
+          <b>Allergies and Conditions:</b><br/> {contactTest.notes}<br/>
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="primary" onClick={() => setModalShow(true)}>
+          Add Emergency Contact
+        </Button>
+        <EmerEntry
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      </Card.Footer>
+    </Card>
+
   );
 }
 
