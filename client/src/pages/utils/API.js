@@ -20,6 +20,7 @@ export default {
   },
   getSchedule: function(day) {
     console.log("INSIDE GETSCHEDULE");
+    console.log(day);
     return axios.get("/api/schedules/" + day);
   },
   getAllSchedules: function() {

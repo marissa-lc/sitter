@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton, Modal, Form } from 'react-bootstrap';
 import EditSchedule from "./EditSchedule";
 import API from "../pages/utils/API";
 
@@ -20,7 +20,7 @@ function Schedule() {
     console.log("change schedule")
     API.getSchedule(day)
     .then(result => {
-      console.log(result);
+      // console.log(result);
       result.data[0] && setSchedule(result.data[0]);
     })
     .catch(err => console.log(err));
@@ -45,7 +45,7 @@ function Schedule() {
     // how do I know which button pushing?
   }
 
-  function saveSchedule(schedule) { // save schedule
+  function updateSchedule(schedule) { // save schedule
     schedule.preventDefault();
     console.log(schedule);
     API.getSchedule(schedule.day)
@@ -80,8 +80,7 @@ function Schedule() {
         {schedule.events.map((event, index) => (
           <div key={index}>
             {/* <Event */}
-            time={event.time}
-            activity={event.activity}
+            {event.time}: {event.activity}
             {/* ></Event> */}
           </div>
         ))}
@@ -93,14 +92,15 @@ function Schedule() {
         Edit Schedule
       </Button>
       <EditSchedule
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        schedule={schedule}
-        addEvent={addEvent}
-        deleteEvent={deleteEvent}
-        // loadDailySchedule={loadailyschedule}
-        saveSchedule={saveSchedule}
-      />
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          schedule={schedule}
+          addEvent={addEvent}
+          deleteEvent={deleteEvent}
+          // saveSchedule={updateSchedule}
+          reloadSchedule={loadschedule}
+        />
+
     </div>
   );
   }
