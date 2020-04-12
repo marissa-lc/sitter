@@ -40,7 +40,8 @@ console.log("MAKING MONGO CONNECTION");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/sitterData", {
   useCreateIndex: true,
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
   });
 let mongoDb = mongoose.connection;
 mongoDb.on("error", console.error.bind(console, "connection error:"));
