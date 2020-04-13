@@ -14,7 +14,7 @@ function EmerEntry(props) {
     <div>
        <div className="card">
         <div className="card-header">
-          Edit Emergency Contact
+          Add Emergency Contact
         </div>
         <form>
           <div className="form-row">
@@ -105,13 +105,11 @@ function EmerEntry(props) {
             <label htmlFor="allergies">Allergies, or other medical conditions</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
           </div>
-          {/* <button type="submit" className="btn btn-primary">Submit</button> */}
         </form>
       </div>
     </div>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
-        {/* needs to also have SUBMIT handler on close */}
       </Modal.Footer>
     </Modal>
   );

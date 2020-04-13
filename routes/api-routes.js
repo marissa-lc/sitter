@@ -112,9 +112,14 @@ module.exports = function(app) {
 
   // update a record: 
   app.put("/api/schedules", function(req, res) {
-    console.log(req.params.day);
+    console.log("INSIDE APP.PUT CALL")
     console.log(req.body);
-    mongoosedb.Schedule.findOneAndUpdate({ day: req.params.day }, req.body)
+    console.log("day:", req.body.day);
+    console.log("events:", req.body.events);
+    console.log("notes:", req.body.notes);
+    mongoosedb.Schedule.findOneAndUpdate({ day: req.body.day }, {
+      "$set": {events: req.body.events, notes: req.body.notes}
+    })
     .then(dbResult => res.json(dbResult))
     .catch(err => res.status(422).json(err));
   })

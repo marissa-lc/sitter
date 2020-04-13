@@ -20,6 +20,7 @@ export default {
   },
   getSchedule: function(day) {
     console.log("INSIDE GETSCHEDULE");
+    console.log(day);
     return axios.get("/api/schedules/" + day);
   },
   getAllSchedules: function() {
@@ -33,7 +34,7 @@ export default {
 
   // put call - (replace)
   updateSchedule: function(scheduleData) {
-    console.log("INSIDE GET SCHEDULE")
+    console.log("INSIDE UPDATE SCHEDULE")
     return axios.put("/api/schedules", scheduleData);
   }
 };
