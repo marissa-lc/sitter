@@ -3,11 +3,13 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import API from "../pages/utils/API";
 
 function EditSchedule(props) {
-  let updatedSched = {
+  const [eventsList, setEventsList] = useState([]);
+  const updatedSched = {
     day: "",
     events: [],
     notes: ""
   };
+  // const [updateSched, setUpdatedSched] = useState(updatedSched.events);
 
   function submitNewSched(event) {
     event.preventDefault();
@@ -27,7 +29,7 @@ function EditSchedule(props) {
       } else {
         console.log("updating");
         API.updateSchedule(schedule)
-        .then(()=> props.reloadSchedule(updatedSched.day))
+        .then(()=> props.reloadSchedule(updatedSched.day));
       }
     })
     .catch(err => console.log(err));
@@ -40,15 +42,6 @@ function EditSchedule(props) {
     let name = event.nativeEvent.target.getAttribute("name");
     let idx = event.nativeEvent.target.parentNode.getAttribute("idx");
     let value = event.nativeEvent.target.value;
-
-    let newValue = event.nativeEvent.target.value;
-    console.log(updatedSched.events);
-    console.log(props.schedule.day);
-    console.log(newValue);
-    console.log(event.nativeEvent.target.parentNode);
-    console.log(idx);
-    console.log(name);
-
     if (value) {
       if (idx && name === "time") {
         updatedSched.events[idx].time = value;
@@ -59,8 +52,17 @@ function EditSchedule(props) {
         updatedSched.notes = value;
       }
     }
-
     console.log(updatedSched);
+  }
+
+  function addEvent() {
+    console.log("add event");
+    updatedSched.events.push({
+      time: "",
+      activity: ""
+    })
+    console.log(updatedSched.events);
+    setEventsList(updatedSched.events);
   }
 
   return (
@@ -110,9 +112,9 @@ function EditSchedule(props) {
           </Form.Group>
           <Button type="submit">Save</Button>
         </Form>
-
       </Modal.Body>
       <Modal.Footer>
+        <Button variant="secondary" onClick={()=>addEvent()}>Add Event</Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
