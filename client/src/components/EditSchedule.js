@@ -1,31 +1,6 @@
-<<<<<<< HEAD
-import React from 'react';
-// import React, { useState } from "react";
-import {Button, Modal, Form,  } from 'react-bootstrap'; 
-// Dropdown, DropdownButton, FormControl, 
-import API from "../pages/utils/API";
-import Schedule from "./Schedule";
-
-function updateSchedule(sched) {
-  console.log(sched)
-  API.getSchedule(sched.day)
-  .then(result => {
-    if (result.data[0]===[]) {
-      console.log("saving")
-      API.saveSchedule(sched)
-    } else {
-      console.log("doing something else")
-      API.updateSchedule(sched)
-    }
-  })
-  .catch(err => console.log(err));
-}
-
-=======
 import React, { useState, useEffect, useRef } from "react";
 import { Button, Modal, Form } from 'react-bootstrap';
 import API from "../pages/utils/API";
->>>>>>> 7682da03a869f96c4965d3b4534af414267027f0
 
 function EditSchedule(props) {
   const [eventsList, setEventsList] = useState([]);
