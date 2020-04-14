@@ -12,7 +12,7 @@ const contactTest = {
   state: "OR",
   phone: "503-555-5555",
   email: "bjones1234@gmail.com",
-  notes: "Bridget is Finn's aunt, and has permission to come over and stay, or transport Finn and/or Jake somewhere if needed."
+  notes: "Bridget has permission to come over and stay, or transport Finn and/or Jake somewhere if needed."
 }
 
 function Emergency(props) {

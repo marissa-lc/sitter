@@ -41,7 +41,7 @@ function AddBio(props) {
       </div>
    
       <div className="modal-footer">
-        <button onClick={()=>props.onHide()}>Close</button>
+        <button className="btn btn-primary" onClick={()=>props.onHide()}>Close</button>
       </div>
 
 
