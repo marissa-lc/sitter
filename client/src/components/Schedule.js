@@ -25,28 +25,12 @@ function Schedule() {
     .catch(err => console.log(err));
   }
 
-  // function onDaySelect(event, day) {
-  //   event.preventDefault();
-  //   loadSchedule(day);
-  // }
-
   useEffect(() => {
-    loadSchedule(day); // this is a test
+    loadSchedule(day);
     console.log(day);
   }, []);
 
-  // function addEvent(event) {
-  //   // schedule.event.post (add it to the end of the events array)
-  //   // and then update the a
-  //   schedule.events.push(event);
-  // }
-
-  // function deleteEvent(index) {
-  //   // need the index of the event you want to delete in the array
-  //   // how do I know which button pushing?
-  // }
-
-  function updateSchedule(schedule) { // save schedule
+  function updateSchedule(schedule) {
     schedule.preventDefault();
     console.log(schedule);
     API.getSchedule(schedule.day)

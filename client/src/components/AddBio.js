@@ -34,6 +34,7 @@ function AddBio(props) {
             <div className="form-group">
               <label htmlFor="bio">Tell us a little more...</label>
               <textarea className="form-control" id="bio" rows={3} defaultValue={""} />
+              <button type="submit" className="btn btn-primary">Add a Photo</button>
             </div>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
@@ -41,7 +42,7 @@ function AddBio(props) {
       </div>
    
       <div className="modal-footer">
-        <button onClick={()=>props.onHide()}>Close</button>
+        <button className="btn btn-primary" onClick={()=>props.onHide()}>Close</button>
       </div>
 
 

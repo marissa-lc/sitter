@@ -23,6 +23,7 @@ function Signup() {
 
  function signUpForm (event) {    
     event.preventDefault();
+    console.log("here");
 
     if (!formObject.userEmail || !formObject.userPassword || (formObject.userPassword !== formObject.userPasswordConfirm)) {
       setFormObject({ ...formObject, displayError: true});
@@ -37,6 +38,7 @@ function Signup() {
       .then(res => {
         console.log('success');
         console.log(res);
+        window.location.replace("/login");
       })
       .catch(err => {
         console.log('error');

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import EmerEntry from "./EmerEntry";
-// import CenteredModal from "./CenteredModal";
 
 const contactTest = {
   firstname: "Bridget",
@@ -12,7 +11,7 @@ const contactTest = {
   state: "OR",
   phone: "503-555-5555",
   email: "bjones1234@gmail.com",
-  notes: "Bridget is Finn's aunt, and has permission to come over and stay, or transport Finn and/or Jake somewhere if needed."
+  notes: "Bridget has permission to come over and stay, or transport Finn and/or Jake if needed."
 }
 
 function Emergency(props) {
@@ -30,7 +29,7 @@ function Emergency(props) {
           <b>Adress:</b> {contactTest.address + " " + contactTest.city + ", " + contactTest.state}<br />
           <b>Phone Number:</b> {contactTest.phone}<br/>
           <b>Eail Address:</b> {contactTest.email}<br/>
-          <b>Allergies and Conditions:</b><br/> {contactTest.notes}<br/>
+          <b>Notes:</b><br/> {contactTest.notes}<br/>
         </Card.Text>
       </Card.Body>
       <Card.Footer>
