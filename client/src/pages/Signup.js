@@ -69,7 +69,7 @@ return (
               <span className="sr-only">Error:</span> <span className="msg">{formObject.errorMessage}</span>
             </div>
             {/* <button onClick={signUpForm} type="submit" className="btn btn-default">Sign Up</button> */}
-            <Button color="inherit" onClick={signUpForm} type="submit">Sign Up </Button>
+            <Button color="inherit" onClick={signUpForm} type="submit">Sign Up</Button>
           </form>
           <br />
           {/* <p><a href="/">Home</a></p> */}

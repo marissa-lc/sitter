@@ -36,7 +36,8 @@ function Login() {
   //  })
     API.login(email, password)
     .then(res => {
-      window.location = '/sitter';
+      // window.location = '/sitter';
+      window.location.replace("/sitter");
     })
     .catch(err => {
       setFormObject({ ...formObject, errorMessage: "Invalid Username/Password", displayError: true })
@@ -63,7 +64,7 @@ return (
               <span className="sr-only">Error:</span> <span className="msg">{formObject.errorMessage}</span>
             </div>          
             {/* <button onClick={loginForm} type="submit" className="btn btn-default">Login</button> */}
-            <Button color="inherit" onClick={loginForm} type="submit">Log In </Button>
+            <Button color="inherit" onClick={loginForm} type="submit">Log In</Button>
           </form>
           <br />
           {/* <p><a href="/">Home</a></p> */}
