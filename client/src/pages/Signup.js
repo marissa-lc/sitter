@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
-// import Header from "../components/Header";
-// import Footer from "../components/Footer";
-// import ProjectList from "../components/ProjectList";
+import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
 function Signup() {
   const [formObject, setFormObject] = useState({
@@ -51,7 +50,7 @@ return (
     <div className="container">
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-          <h2>Sign Up for Sitter</h2>
+          <h3>Sign Up for Sitter</h3>
           <form className="signup">
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
@@ -69,11 +68,13 @@ return (
               <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true" />
               <span className="sr-only">Error:</span> <span className="msg">{formObject.errorMessage}</span>
             </div>
-            <button onClick={signUpForm} type="submit" className="btn btn-default">Sign Up</button>
+            {/* <button onClick={signUpForm} type="submit" className="btn btn-default">Sign Up</button> */}
+            <Button color="inherit" onClick={signUpForm} type="submit">Sign Up </Button>
           </form>
           <br />
           {/* <p><a href="/">Home</a></p> */}
-          <p>Already signed up? Log in <a href="/login">here</a></p>
+          {/* <p>Already signed up? Log in <a href="/login">here</a></p> */}
+          Already signed up?  <Link to="/login"><Button color="inherit">Log In </Button></Link>
         </div>
       </div>
     </div>

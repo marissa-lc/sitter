@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 import API from "./utils/API";
-// import axios from "axios";
-// import Footer from "../components/Footer";
-// import ProjectList from "../components/ProjectList";
 
 function Login() {
   const [formObject, setFormObject] = useState({
@@ -63,12 +62,14 @@ return (
               <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true" />
               <span className="sr-only">Error:</span> <span className="msg">{formObject.errorMessage}</span>
             </div>          
-            <button onClick={loginForm} type="submit" className="btn btn-default">Login</button>
+            {/* <button onClick={loginForm} type="submit" className="btn btn-default">Login</button> */}
+            <Button color="inherit" onClick={loginForm} type="submit">Log In </Button>
           </form>
           <br />
           {/* <p><a href="/">Home</a></p> */}
           {/* this needs to change to be  */}
-          <p>Not already a member? Sign up <a href="/signup">here</a></p>
+          {/* <p>Not already a member? Sign up <a href="/signup">here</a></p> */}
+          Not already a member? <Link to="/signup"><Button color="inherit">Sign up </Button></Link>
         </div>
       </div>
     </div>
