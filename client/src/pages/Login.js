@@ -49,7 +49,7 @@ return (
     <div className="container">
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-          <h2>Log in to Sitter</h2>
+          <h3>Log in to Sitter</h3>
           <form className="login">
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>

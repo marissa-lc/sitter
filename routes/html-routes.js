@@ -11,6 +11,7 @@ module.exports = function(app) {
   });
 
   app.get("/signup", function(req, res) {
+    // NOT CALLED
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
