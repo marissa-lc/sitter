@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 import API from "./utils/API";
-// import axios from "axios";
-// import Footer from "../components/Footer";
-// import ProjectList from "../components/ProjectList";
+
 
 function Login() {
   const [formObject, setFormObject] = useState({
@@ -68,7 +68,8 @@ return (
           <br />
           {/* <p><a href="/">Home</a></p> */}
           {/* this needs to change to be  */}
-          <p>Not already a member? Sign up <a href="/signup">here</a></p>
+          {/* <p>Not already a member? Sign up <a href="/signup">here</a></p> */}
+          Not already a member? <Link to="/signup"><Button color="inherit">Sign up</Button></Link>
         </div>
       </div>
     </div>

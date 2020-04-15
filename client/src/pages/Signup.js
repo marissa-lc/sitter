@@ -51,7 +51,7 @@ return (
     <div className="container">
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-          <h2>Sign Up for Sitter</h2>
+          <h3>Sign Up for Sitter</h3>
           <form className="signup">
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
