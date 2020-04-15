@@ -74,7 +74,7 @@ return (
           <br />
           {/* <p><a href="/">Home</a></p> */}
           {/* <p>Already signed up? Log in <a href="/login">here</a></p> */}
-          Already signed up?  <Link to="/login"><Button color="inherit">Log In </Button></Link>
+          Already signed up?  <Link to="/login">Log In</Link>
         </div>
       </div>
     </div>

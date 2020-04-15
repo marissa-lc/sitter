@@ -69,7 +69,7 @@ return (
           {/* <p><a href="/">Home</a></p> */}
           {/* this needs to change to be  */}
           {/* <p>Not already a member? Sign up <a href="/signup">here</a></p> */}
-          Not already a member? <Link to="/signup"><Button color="inherit">Sign up </Button></Link>
+          Not already a member? <Link to="/signup">Sign up</Link>
         </div>
       </div>
     </div>
