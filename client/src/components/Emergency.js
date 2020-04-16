@@ -43,7 +43,7 @@ function Emergency(props) {
           <b>Adress:</b> {contactTest.address + " " + contactTest.city + ", " + contactTest.state}<br />
           <b>Phone Number:</b> {contactTest.phone}<br/>
           <b>Eail Address:</b> {contactTest.email}<br/>
-          <b>Allergies and Conditions:</b><br/> {contactTest.notes}<br/>
+          <b>Notes:</b><br/> {contactTest.notes}<br/>
         </Card.Text>
       </Card.Body>
       <Card.Footer>
@@ -60,12 +60,12 @@ function Emergency(props) {
       <Card.Body>
         {/* <Card.Title>Emergency Contact</Card.Title> */}
         <Card.Text>
-          <b>Name:</b> {contactTest.firstname + " " + contactTest.lastname}<br />
-          <b>Relationship:</b> {contactTest.relationship}<br/>
-          <b>Adress:</b> {contactTest.address + " " + contactTest.city + ", " + contactTest.state}<br />
-          <b>Phone Number:</b> {contactTest.phone}<br/>
-          <b>Eail Address:</b> {contactTest.email}<br/>
-          <b>Allergies and Conditions:</b><br/> {contactTest.notes}<br/>
+          <b>Name:</b> {contactTest2.firstname + " " + contactTest2.lastname}<br />
+          <b>Relationship:</b> {contactTest2.relationship}<br/>
+          <b>Adress:</b> {contactTest2.address + " " + contactTest2.city + ", " + contactTest2.state}<br />
+          <b>Phone Number:</b> {contactTest2.phone}<br/>
+          <b>Eail Address:</b> {contactTest2.email}<br/>
+          <b>Notes:</b><br/> {contactTest2.notes}<br/>
         </Card.Text>
       </Card.Body>
       <Card.Footer>

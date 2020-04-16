@@ -119,7 +119,7 @@ function EmerEntry(props) {
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail Address" />
           </div>
           <div className="form-group">
-            <label htmlFor="allergies">Allergies, or other medical conditions</label>
+            <label htmlFor="allergies">Additional notes (allergies, conditions, etc.)</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
           </div>
         </form>
