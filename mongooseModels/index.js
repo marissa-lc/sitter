@@ -1,4 +1,4 @@
 module.exports = {
   Schedule: require("./schedule"),
-  // User: require("./User")
+  Contact: require("./contact")
 };

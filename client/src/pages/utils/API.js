@@ -32,9 +32,33 @@ export default {
     return axios.post("/api/schedules");
   },
 
-  // put call - (replace)
   updateSchedule: function(scheduleData) {
     console.log("INSIDE UPDATE SCHEDULE")
     return axios.put("/api/schedules", scheduleData);
+  },
+
+  // Saves the contact to the database
+  saveContact: function(contactData) {
+    console.log("contactData in API", contactData)
+    return axios.post("/api/contacts", contactData);
+  },
+  getContact: function(day) {
+    console.log("INSIDE GETcontact");
+    console.log(day);
+    return axios.get("/api/contacts/" + day);
+  },
+  getAllContact: function() {
+      console.log("INSIDE GETALLcontact");
+      return axios.get("/api/contacts");
+  },
+  addContact: function() {
+    console.log("INSIDE ADD contact");
+    return axios.post("/api/contacts");
+  },
+
+  // put call - (replace)
+  updateSchedule: function(contactData) {
+    console.log("INSIDE UPDATE SCHEDULE")
+    return axios.put("/api/contacts", contactData);
   }
 };

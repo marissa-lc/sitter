@@ -49,7 +49,7 @@ return (
     </Card>
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="1">
-        <h4>Profile</h4>
+        <h4>Profiles</h4>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="1">
         <Card.Body>

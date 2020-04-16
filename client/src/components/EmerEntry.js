@@ -1,8 +1,25 @@
 import React from "react";
 import { Button, Modal } from 'react-bootstrap';
+import API from "../pages/utils/API";
 
 function EmerEntry(props) {
   console.log("event props", props);
+
+  // function updateContacts(contacts) {
+  //   console.log(contacts);
+  //   API.getContact(contacts.id)
+  //   .then(result => {
+  //     if (result.data[0]===[]) {
+  //       console.log("saving")
+  //       API.saveContact(contacts)
+  //     } else {
+  //       console.log("updating");
+  //       API.updateContact(contacts)
+  //       .then(()=> props.reloadContact(updatedContact.id));
+  //     }
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
   return (
     <Modal

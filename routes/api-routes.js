@@ -39,7 +39,6 @@ module.exports = function(app) {
     });
     res.cookie('token', token, { httpOnly: true })
       .sendStatus(200);
-
   });
 
   app.get("/api/checkToken", withAuth, function(req, res) {

@@ -37,6 +37,10 @@ function Profile(props) {
                 <b>Notes:</b> {test.notes}<br />
               </Card.Text>
             </Card.Body>
+            <Card.Footer>
+              <Button variant="secondary">Edit Profile</Button>
+              <Button variant="secondary">Delete</Button>
+            </Card.Footer>
           </Card>
           <Card border="primary">
             <Card.Body>
@@ -48,6 +52,10 @@ function Profile(props) {
                 <b>Notes:</b> {test2.notes}<br />
               </Card.Text>
             </Card.Body>
+            <Card.Footer>
+              <Button variant="secondary">Edit Profile</Button>
+              <Button variant="secondary">Delete</Button>
+            </Card.Footer>
           </Card>
         </CardGroup>
 

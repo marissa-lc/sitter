@@ -36,7 +36,7 @@ function Login() {
   //  })
     API.login(email, password)
     .then(res => {
-      // window.location = '/sitter';
+      // window.location = "/sitter";
       window.location.replace("/sitter");
     })
     .catch(err => {
@@ -48,7 +48,8 @@ return (
   <div className="bg-light">
     <div className="container">
       <div className="row">
-        <div className="col-md-6 col-md-offset-3">
+        <div className="col-md-6 col-sm-12 col-md-offset-3">
+        <img src="logo512.png" width="50%"/>
           <h3>Log in to Sitter</h3>
           <form className="login">
             <div className="form-group">
